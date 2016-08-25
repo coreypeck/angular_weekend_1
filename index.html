@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Monthly Salary Calculator</title>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="form-style.css" />
+</head>
+
+<body ng-app="myApp">
+    <h1>Monthly Salary Calculator</h1>
+    <div ng-controller="empController">
+        <form id="employeeinfo">
+            <div class="labels">
+                <label for="empFName">Employee First Name:</label>
+                <input ng-model="empFName" type="text" id="empFName" name="empFName" autofocus/>
+
+                <label for="empLName">Employee Last Name: </label>
+                <input ng-model="empLName" type="text" id="empLName" name="empLName" />
+
+                <label for="empNum">Employee Number: #</label>
+                <input ng-model="empNum" type="number" id="empNum" name="empNum" />
+
+                <label for="empTitle">Employee Title:</label>
+                <input ng-model="empTitle" type="text" id="empTitle" name="empTitle" />
+
+                <label for="empSal">Employee Salary: $</label>
+                <input ng-model="empSal" type="number" id="empSal" name="empSal" />
+
+                <button id="empSubmit" ng-click="getEmp()">Submit</button>
+            </div>
+        </form>
+
+        <div id="monTotals">
+            <p>Monthly Total: ${{summary[0].monTotal}}</p>
+        </div>
+        <h2>Employees:</h2>
+    <div id="container" ng-repeat="emp in summary">
+        <div class="person"><p>Employee Name: {{emp.first}} {{emp.last}} Employee Number: #{{emp.num}} Employee Title: {{emp.title}} Employee Salary: ${{emp.sal}}<p>
+          <button id="empDelete" ng-click="delEmp(emp.arrayNum, emp.monTotal)">Delete</button></div>
+    </div>
+  </div>
+</body>
+
+</html>
