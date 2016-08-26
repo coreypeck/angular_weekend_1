@@ -28,7 +28,7 @@ h2{
 }
 #monTotals {
     text-align: center;
-    padding-top: 40px;
+    /*padding-top: 40px;*/
     font-weight: bold;
   }
 #monTotals p {

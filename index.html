@@ -33,12 +33,12 @@
         </form>
 
         <div id="monTotals">
-            <p>Monthly Total: ${{summary[0].monTotal}}</p>
+            <p>Monthly Total: {{salaryTotal}}</p>
         </div>
         <h2>Employees:</h2>
     <div id="container" ng-repeat="emp in summary">
-        <div class="person"><p>Employee Name: {{emp.first}} {{emp.last}} Employee Number: #{{emp.num}} Employee Title: {{emp.title}} Employee Salary: ${{emp.sal}}<p>
-          <button id="empDelete" ng-click="delEmp(emp.arrayNum, emp.monTotal)">Delete</button></div>
+        <div class="person"><p>Employee Name: {{emp.newEmp.first}} {{emp.newEmp.last}} Employee Number: #{{emp.newEmp.num}} Employee Title: {{emp.newEmp.title}} Employee Salary: ${{emp.newEmp.sal}}<p>
+          <button id="empDelete" ng-click="delEmp($index)">Delete</button></div>
     </div>
   </div>
 </body>
