@@ -5,35 +5,39 @@ myApp.controller("empController", ["$scope", function($scope) {
     var i = 0;
     setBlank($scope);
     $scope.summary = [{}];
+    var currentSummary = [{}];
     $scope.getEmp = function() {
         sendEmp($scope, i);
         i++;
     }
     $scope.delEmp = function(id, empSal) {
-      $scope.summary = [{}];
-      console.log("Delete is running");
-      console.log($scope.summary);
-      delete $scope.summary[id];
-      console.log($scope.summary);
-      $scope.summary.forEach(function(worker, index) {
-        if(worker == undefined){
+      i--;
+      var counter=0;
+      $scope.summary.forEach(function(worker) {
+        $scope.summary = [{}];
+        currentSummary = [{}];
+        console.log("id",id);
+        console.log("worker",worker.arrayNum);
+        if(worker.arrayNum == id){
           return;
         }
         else{
-          $scope.summary.push(worker);
-          $scope.summary[index].arrayNum = index;
-          console.log($scope.summary[index]);
+          currentSummary.push(worker);
+          currentSummary[counter].arrayNum = counter;
+          currentSummary.shift();
+          $scope.summary = currentSummary;
+          console.log(currentSummary);
+          console.log($scope.summary);
+          prepPush($scope, currentSummary[counter].first,currentSummary[counter].last,currentSummary[counter].num,currentSummary[counter].title,currentSummary[counter].sal,currentSummary[counter].monTotal,currentSummary[counter].arrayNum);
+          counter++;
         }
       });
-      // $scope.summary.forEach(worker){
-      //
-      // }
-      // $scope.getEmp();
     }
 }]);
 
+var monthlySalary = 0;
+
 function sendEmp($scope, i) {
-    console.log("empSummary:", $scope.empFName, $scope.empLName, $scope.empNum, $scope.empTitle);
     if ($scope.empFName == "" || $scope.empLName == "" || $scope.empNum == 0 || $scope.empTitle == "") {
         console.log("Make sure you have all fields filled out and all number values aren't 0");
     } else {
@@ -81,5 +85,4 @@ function prepPush($scope, first, last, num, title, sal, monTotal, arrayNum) {
         arrayNum: arrayNum
     });
     setBlank($scope);
-    console.log("Summary: ", $scope.summary);
 }
